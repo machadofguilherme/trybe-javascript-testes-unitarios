@@ -91,6 +91,10 @@ describe("6 - Implemente os casos de teste para a função `productDetails`", ()
   });
 
   it("Teste se os dois productIds terminam com 123", () => {
-    expect({"productId": "Máscara123"}).toEqual({"productId": "Máscara123"});
+    const productDetailsContent = productDetails();
+    let first = productDetailsContent[0].details.productId.substring(productDetailsContent[0].details.productId.length - 3);
+    let second = productDetailsContent[1].details.productId.substring(productDetailsContent[0].details.productId.length - 3);
+    expect(first).toEqual('123');
+    expect(second).toEqual('123');
   });
 });
