@@ -35,59 +35,27 @@ describe("6 - Implemente os casos de teste para a função `productDetails`", ()
   });
 
   it("Teste se o retorno da função é um array", () => {
-    expect(productDetails('Alcool gel', 'Máscara')).toEqual( [
-      {
-        name: 'Alcool gel',
-        details: {
-          productId: 'Alcool gel123',
-        }
-      },
-      {
-        name: 'Máscara',
-        details: {
-          productId: 'Máscara123'
-        }
-      }
-    ]);
+    const productDetailsContent = productDetails();
+    expect(Array.isArray(productDetailsContent)).toBeTruthy();
   });
 
   it("Teste se o array retornado pela função contém dois itens dentro", () => {
-    expect(productDetails().length).toEqual(productDetails().length);
+    const productDetailsContent = productDetails();
+    expect(productDetailsContent.length).toEqual(2);
   });
 
   it("Teste se os dois itens retornado pela função são objetos", () => {
-    expect(productDetails('Alcool gel', 'Máscara')).toEqual( [
-      {
-        name: 'Alcool gel',
-        details: {
-          productId: 'Alcool gel123',
-        }
-      },
-      {
-        name: 'Máscara',
-        details: {
-          productId: 'Máscara123'
-        }
-      }
-    ]);
+    const productDetailsContent = productDetails();
+    let first = typeof productDetailsContent[0];
+    let second = typeof productDetailsContent[1];
+
+    expect(first).toEqual('object');
+    expect(second).toEqual('object');
   });
 
-  it("Teste se quando passado parâmetros diferentes os objetos também são", () => {
-    let otherObject = [
-      {
-        name: "Alcool gel",
-        details: {
-          productId: "Alcool gel123",
-        },
-      },
-      {
-        name: "Máscara",
-        details: {
-          productId: "Máscara123",
-        },
-      },
-    ];
-    expect(productDetails().length).toEqual(otherObject.length);
+  it("Teste se quando passado parâmetros diferentes os objetos também são diferentes", () => {
+    const productDetailsContent = productDetails('Alcool gel', 'Máscara');
+    expect(productDetailsContent[0]).not.toEqual({ name: 'Máscara', details: { productId: 'Máscara123' } });
   });
 
   it("Teste se os dois productIds terminam com 123", () => {
